@@ -1,0 +1,36 @@
+#!/bin/sh
+
+#
+# OpenVPN
+#
+
+. /etc/rc.common
+
+StartService ()
+{
+    ConsoleMessage "Starting OpenVPN"
+    cd /etc/openvpn && /opt/local/sbin/openvpn2 --config ted-macmini.conf --daemon
+}
+
+StopService ()
+{
+    ConsoleMessage "Stopping OpenVPN"
+    killall openvpn
+}
+
+RestartService ()
+{
+    StopService
+    StartService
+}
+
+if [ z"$#" == z"0" ] ; then
+    StartService
+else
+    case $1 in 
+        start  ) StartService   ;;
+        stop   ) StopService    ;;
+        restart) RestartService ;;
+        *      ) echo "/Library/StartupItems/OpenVPN/OpenVPN: unknown argument: ";;
+    esac
+fi

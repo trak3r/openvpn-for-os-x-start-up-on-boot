@@ -1,0 +1,9 @@
+1. Move this folder into /Library/StartupItems
+
+2. Open up a Terminal
+
+3. "cd /Library/StartupItems/OpenVPN"
+
+4. "sudo chown root:wheel ."
+
+5. "sudo chown root:wheel *"
